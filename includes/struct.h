@@ -8,6 +8,8 @@ typedef struct s_map
 {
 	int width;
 	int height;
+	int	win_width;
+	int	win_height;
 	int floor;
 	int ceil;
 	char **map;
@@ -27,3 +29,9 @@ typedef struct s_mlx
 	void *img;
 }	t_mlx;
 
+typedef struct	s_cub
+{
+	t_map		map;
+	t_player	player;
+	t_mlx		mlx;
+}	t_cub;
