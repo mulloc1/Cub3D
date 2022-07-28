@@ -4,6 +4,20 @@ typedef struct s_vector
 	double y;
 }	t_vector;
 
+typedef struct	s_ray
+{
+	t_vector vec;
+	t_vector sideDist;
+	t_vector deltaDist;
+	double perpWallDist;
+	int mapX;
+	int mapY;
+	int stepX;
+	int stepY;
+	int hit;
+	int side;
+}	t_ray;
+
 typedef struct s_map
 {
 	int width;
