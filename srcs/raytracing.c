@@ -93,3 +93,13 @@ int raytracing(t_map *map, t_player *player)
 		
 	}
 }
+
+int testsetting(t_map *map, t_player *player)
+{
+	map->win_width = 640;
+	map->win_height = 480;
+	map->width = 24;
+	map->height = 24;
+	map->floor = 0x000000;
+	map->ceil = 0xffffff;
+}
