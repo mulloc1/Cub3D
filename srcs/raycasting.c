@@ -29,12 +29,29 @@ int rotate_vector(t_player *player, int right)
 void	verLine(int x, int drawstart, int drawend, int color, t_cub *cub)
 {
 	unsigned int	*temp;
-	printf("%d %d\n", drawstart, drawend);
-	for (int i = drawstart; i < drawend; i++)
+	int i;
+	
+	i = -1;
+	while (++i < cub->map.win_height)
+	{
+		temp = (unsigned int*)cub->mlx.buf + (i * cub->map.win_width) + x;
+		if (i < cub->map.win_height / 2)
+			*temp = cub->map.ceil;
+		else
+			*temp = cub->map.floor;
+	}
+	i = drawstart - 1;
+	while (++i < drawend)
 	{
 		temp = (unsigned int*)cub->mlx.buf + (i * cub->map.win_width) + x;
 		*temp = color;
 	}
+	// printf("%d, %d\n",drawstart, drawend);
+	// for (int i = drawstart; i < drawend; i++)
+	// {
+	// 	temp = (unsigned int*)cub->mlx.buf + (i * cub->map.win_width) + x;
+	// 	*temp = color;
+	// }
 }
 
 int	ray_init(t_player *player, double cam_x, t_ray *ray)

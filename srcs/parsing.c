@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaebae <jaebae@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jonkim <jonkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:42:31 by jaebae            #+#    #+#             */
-/*   Updated: 2022/08/01 14:46:33 by jaebae           ###   ########.fr       */
+/*   Updated: 2022/08/01 15:48:05 by jonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,27 @@ void	ft_player_direction(t_cub *cub, char dir, t_vector v)
 {
 	if (cub->player.pos.x > 0 && cub->player.pos.y > 0)
 		ft_error(1, "invalid map multi player");
-	cub->player.pos.x = v.x;
-	cub->player.pos.y = v.y;
+	cub->player.pos.x = v.x + 0.5;
+	cub->player.pos.y = v.y + 0.5;
 	if (dir == 'N')
 	{
 		cub->player.dir = (t_vector){0, 1};
-		cub->player.cam = (t_vector){-0.66, 0};
+		cub->player.plane = (t_vector){-0.66, 0};
 	}
 	else if (dir == 'S')
 	{
 		cub->player.dir = (t_vector){0, -1};
-		cub->player.cam = (t_vector){0.66, 0};
+		cub->player.plane = (t_vector){0.66, 0};
 	}
 	else if (dir == 'E')
 	{
 		cub->player.dir = (t_vector){1, 0};
-		cub->player.cam = (t_vector){0, -0.66};
+		cub->player.plane = (t_vector){0, -0.66};
 	}
 	else if (dir == 'W')
 	{
 		cub->player.dir = (t_vector){-1, 0};
-		cub->player.cam = (t_vector){0, 0.66};
+		cub->player.plane = (t_vector){0, 0.66};
 	}
 }
 
@@ -95,6 +95,7 @@ int	ft_parsing(t_cub *cub, char *file)
 	}
 	cub->map.win_height = 480;
 	cub->map.win_width = 640;
+	cub->map.wall_color = 0x00FF00;
 	map_valid_checking(cub);
 	rebuilding_map(cub);
 	return (1);

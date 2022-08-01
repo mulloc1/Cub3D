@@ -240,7 +240,7 @@ int	ft_parsing(t_cub *cub, char *file)
 	}
 	cub->map.win_height = 480;
 	cub->map.win_width = 640;
-	cub->map.wall_color = 0xffffff;
+	cub->map.wall_color = 0xFFFF00;
 	valid_checking(cub);
 	rebuilding_map(cub);
 	return (1);

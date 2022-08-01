@@ -16,7 +16,8 @@
 # define ROTATE_L 0.785398
 
 int		ft_mlx_init(t_cub *cub);
-int		raytracing(t_map *map, t_player *player, t_cub *cub);
+int		raycasting(t_cub *cub);
+
 
 // parsing functions
 void	ft_error(int cmp, char *message);
