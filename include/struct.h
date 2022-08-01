@@ -38,7 +38,7 @@ typedef struct s_player
 {
 	t_vector pos;
 	t_vector dir;
-	t_vector cam;
+	t_vector plane;
 } t_player;
 
 typedef struct s_mlx

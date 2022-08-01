@@ -38,7 +38,7 @@ fclean : clean
 re : fclean all
 
 test : 
-	gcc -Werror -Wall -Wextra test/main.c -L . -lmlx -I minilibx_mms_20200219 -framework OpenGl -framework Appkit -o cub3D
+	gcc -Werror -Wall -Wextra test/main.c -g -L . -lmlx -I minilibx_mms_20200219 -framework OpenGl -framework Appkit -o cub3D
 
 $(NAME) : $(OBJS)
 	@make -C libft

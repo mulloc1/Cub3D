@@ -1,3 +1,6 @@
+#ifndef CUB3D_H
+#define CUB3D_H
+
 #include "struct.h"
 #include "libft.h"
 #include "get_next_line.h"
@@ -15,7 +18,8 @@
 
 int ft_mlx_init(t_cub *cub);
 int	ft_parsing(t_cub *cub, char *file);
-int raytracing(t_map *map, t_player *player, t_cub *cub);
+int raycasting(t_cub *cub);
 
+#endif
 
 

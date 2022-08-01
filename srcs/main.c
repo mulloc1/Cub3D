@@ -15,7 +15,7 @@ int main(int ac, char *av[])
 		// 에러 출력
 	}
 	ft_mlx_init(&cub);
-	raytracing(&(cub.map), &(cub.player), &cub);
+	raycasting(&cub);
 	mlx_loop(cub.mlx.mlx);
 	
 	// if (play() == ERROR)
