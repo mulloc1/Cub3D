@@ -18,7 +18,10 @@ DIR = srcs/
 
 SRCS =	$(DIR)init.c \
 		$(DIR)main.c \
-		$(DIR)parser.c \
+		$(DIR)parsing.c \
+		$(DIR)parsing_is_funcs.c \
+		$(DIR)parsing_put_funcs.c \
+		$(DIR)parsing_utils.c \
 		$(DIR)raycasting.c \
 
 
