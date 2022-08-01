@@ -14,9 +14,14 @@ MMS_LIB = minilibx_mms_20200219/libmlx.dylib
 
 OPENGL_LIB = minilibx_opengl_20191021/libmlx.a
 
-DIR = test/main.c
+DIR = srcs/
 
-SRCS = $(DIR)
+SRCS =	$(DIR)init.c \
+		$(DIR)main.c \
+		$(DIR)parser.c \
+		$(DIR)raycasting.c \
+
+
 
 OBJS = $(SRCS:.c=.o)
 
@@ -34,7 +39,7 @@ re : fclean all
 
 $(NAME) : $(OBJS)
 	@make -C libft
-	$(CC) $(CFLAG) $(MMS_FLAG) -o $@ $^ $(LIBFT)
+	$(CC) $(CFLAG) $(INCLUDE) $(MMS_FLAG) -o $@ $^ $(LIBFT)
 
 %.o : %.c
 	$(CC) $(CFLAG) -c $< -o $@

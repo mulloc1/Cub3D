@@ -26,6 +26,10 @@ typedef struct s_map
 	int	win_height;
 	int floor;
 	int ceil;
+	char *no;
+	char *so;
+	char *we;
+	char *ea;
 	char **map;
 }	t_map;
 
@@ -38,9 +42,10 @@ typedef struct s_player
 
 typedef struct s_mlx
 {
-	void *mlx;
-	void *win;
-	void *img;
+	void	*mlx;
+	void	*win;
+	void	*img;
+	int		*buf;
 }	t_mlx;
 
 typedef struct	s_cub

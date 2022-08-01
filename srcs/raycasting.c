@@ -1,4 +1,4 @@
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 int rotate_vector(t_player *player, int right)
 {
@@ -23,6 +23,7 @@ int rotate_vector(t_player *player, int right)
 		player->cam.x = old_camX * cos(ROTATE_L) - player->cam.y * sin(ROTATE_L);
 		player->cam.y = old_camX * sin(ROTATE_L) + player->cam.y * cos(ROTATE_L);
 	}
+	return (0);
 }
 
 int	ray_init(t_player *player, double cam_x, t_ray *tmp_ray)
@@ -56,6 +57,7 @@ int	ray_init(t_player *player, double cam_x, t_ray *tmp_ray)
 	}
 	tmp_ray->hit = 0;
 	tmp_ray->side = 0;
+	return (0);
 }
 
 int raytracing(t_map *map, t_player *player)
@@ -92,6 +94,7 @@ int raytracing(t_map *map, t_player *player)
 			tmp_ray.perpWallDist = (tmp_ray.mapY - player->pos.y + (1 - tmp_ray.stepY) / 2) / tmp_ray.vec.y;
 		
 	}
+	return(0);
 }
 
 int testsetting(t_map *map, t_player *player)
@@ -102,4 +105,6 @@ int testsetting(t_map *map, t_player *player)
 	map->height = 24;
 	map->floor = 0x000000;
 	map->ceil = 0xffffff;
+	(void) player;
+	return (0);
 }

@@ -1,23 +1,22 @@
-#include "mlx.h"
 #include "cub3d.h"
 
 int main(int ac, char *av[])
 {
-	int	fd;
+	t_cub	cub;
 
 	if (ac != 2)
 	{
 		// 에러 출력 
+		return(1);
 	}
-	fd = open(av[1], O_RDONLY);
-	if (init() == ERROR)
+	if (ft_parsing(&cub, av[1]))
 	{
 		// 에러 출력
 	}
-	if (play() == ERROR)
-	{
-		// 에러 출력 
-		// play 함수내에 loop
-	}
+	// if (play() == ERROR)
+	// {
+	// 	// 에러 출력 
+	// 	// play 함수내에 loop
+	// }
 	return (0);
 }
