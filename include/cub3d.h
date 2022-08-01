@@ -15,5 +15,7 @@
 
 int ft_mlx_init(t_cub *cub);
 int	ft_parsing(t_cub *cub, char *file);
+int raytracing(t_map *map, t_player *player, t_cub *cub);
+
 
 

@@ -4,6 +4,7 @@ int main(int ac, char *av[])
 {
 	t_cub	cub;
 
+	ft_memset(&cub, 0, sizeof(t_cub));
 	if (ac != 2)
 	{
 		// 에러 출력 
@@ -13,6 +14,10 @@ int main(int ac, char *av[])
 	{
 		// 에러 출력
 	}
+	ft_mlx_init(&cub);
+	raytracing(&(cub.map), &(cub.player), &cub);
+	mlx_loop(cub.mlx.mlx);
+	
 	// if (play() == ERROR)
 	// {
 	// 	// 에러 출력 

@@ -60,7 +60,19 @@ int	ray_init(t_player *player, double cam_x, t_ray *tmp_ray)
 	return (0);
 }
 
-int raytracing(t_map *map, t_player *player)
+void	verLine(int x, int drawstart, int drawend, int color, t_cub *cub)
+{
+	unsigned int	*temp;
+	cub->map.wall_color = 0xffffff;
+	printf("%d %d\n", drawstart, drawend);
+	for (int i = drawstart; i < drawend; i++)
+	{
+		temp = (unsigned int*)cub->mlx.buf + (i * cub->map.win_width) + x;
+		*temp = color;
+	}
+}
+
+int raytracing(t_map *map, t_player *player, t_cub *cub)
 {
 	int	i;
 	double	cam_x;
@@ -85,26 +97,24 @@ int raytracing(t_map *map, t_player *player)
 				tmp_ray.mapY += tmp_ray.stepY;
 				tmp_ray.side = 1;
 			}
-			if (map->map[tmp_ray.mapX][tmp_ray.mapY] > 0)// x, y swap?
+			if (map->map[tmp_ray.mapY][tmp_ray.mapX] > 0)// x, y swap?
 				tmp_ray.hit = 1;
 		}
 		if (tmp_ray.side == 0)
 			tmp_ray.perpWallDist = (tmp_ray.mapX - player->pos.x + (1 - tmp_ray.stepX) / 2) / tmp_ray.vec.x;
 		else
 			tmp_ray.perpWallDist = (tmp_ray.mapY - player->pos.y + (1 - tmp_ray.stepY) / 2) / tmp_ray.vec.y;
-		
-	}
-	return(0);
-}
+	int lineHeight = (int)(map->win_height / tmp_ray.perpWallDist);
 
-int testsetting(t_map *map, t_player *player)
-{
-	map->win_width = 640;
-	map->win_height = 480;
-	map->width = 24;
-	map->height = 24;
-	map->floor = 0x000000;
-	map->ceil = 0xffffff;
-	(void) player;
-	return (0);
+      //calculate lowest and highest pixel to fill in current stripe
+      int drawStart = -lineHeight / 2 + map->win_height / 2;
+      if(drawStart < 0) drawStart = 0;
+      int drawEnd = lineHeight / 2 + map->win_height / 2;
+      if(drawEnd >= map->win_height) drawEnd = map->win_height - 1;
+	  int color = 0xffffff;
+	  if (tmp_ray.side == 1) {color = color / 2;}
+	  verLine(i, drawStart, drawEnd, color, cub);
+	}
+	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, cub->mlx.img, 0, 0);
+	return(0);
 }

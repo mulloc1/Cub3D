@@ -2,7 +2,7 @@ NAME = cub3D
 
 CC = gcc
 
-CFLAG = -Werror -Wall -Wextra -I include
+CFLAG = -Werror -Wall -Wextra -I include -g
 
 MMS_FLAG = -L . -lmlx -I minilibx_mms_20200219 -framework OpenGl -framework Appkit
 
@@ -37,6 +37,9 @@ fclean : clean
 
 re : fclean all
 
+test : 
+	gcc -Werror -Wall -Wextra test/main.c -L . -lmlx -I minilibx_mms_20200219 -framework OpenGl -framework Appkit -o cub3D
+
 $(NAME) : $(OBJS)
 	@make -C libft
 	$(CC) $(CFLAG) $(INCLUDE) $(MMS_FLAG) -o $@ $^ $(LIBFT)
@@ -44,4 +47,4 @@ $(NAME) : $(OBJS)
 %.o : %.c
 	$(CC) $(CFLAG) -c $< -o $@
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re test

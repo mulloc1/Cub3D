@@ -40,9 +40,10 @@ void	verline(int x, int drawstart, int drawend, int rgb, char *buf, int bpp)
 {
 	unsigned int	*temp;
 	printf("%d %d\n", drawstart, drawend);
-	for (int i = 0; i < drawend - drawstart; i++)
+  bpp++;
+	for (int i = drawstart; i < drawend; i++)
 	{
-		temp = (unsigned *)buf + (i * drawstart) + (x * (bpp / 8));
+		temp = (unsigned int*)buf + (i * screenWidth) + x;
 		*temp = rgb;
 	}
 }

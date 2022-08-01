@@ -143,13 +143,25 @@ void	ft_player_direction(t_cub *cub, char dir, t_vector v)
 	cub->player.pos.x = v.x;
 	cub->player.pos.y = v.y;
 	if (dir == 'N')
+	{
 		cub->player.dir = (t_vector) {0, 1};
+		cub->player.cam = (t_vector) {-0.66, 0};
+	}
 	else if (dir == 'S')
+	{
 		cub->player.dir = (t_vector) {0, -1};
+		cub->player.cam = (t_vector) {0.66, 0};
+	}
 	else if (dir == 'E')
+	{
 		cub->player.dir = (t_vector) {1, 0};
+		cub->player.cam = (t_vector) {0, -0.66};
+	}
 	else if (dir == 'W')
+	{
 		cub->player.dir = (t_vector) {-1, 0};
+		cub->player.cam = (t_vector) {0, 0.66};
+	}
 }
 
 int	ft_isdir(char c)
@@ -221,11 +233,13 @@ int	ft_parsing(t_cub *cub, char *file)
 		if (!buf)
 			break ;
 		buf[ft_strlen(buf) - 1] = '\0';	
-		if (ft_strncmp(buf, "\0", 2))
+		if (ft_strncmp(buf, "\0", 1))
 			if (!ft_type_parsing(cub, buf))
 				creating_map(cub, buf);
 		free(buf);
 	}
+	cub->map.win_height = 480;
+	cub->map.win_width = 640;
 	valid_checking(cub);
 	rebuilding_map(cub);
 	return (1);

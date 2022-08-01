@@ -31,6 +31,7 @@ typedef struct s_map
 	char *we;
 	char *ea;
 	char **map;
+	int	wall_color;
 }	t_map;
 
 typedef struct s_player
@@ -45,7 +46,10 @@ typedef struct s_mlx
 	void	*mlx;
 	void	*win;
 	void	*img;
-	int		*buf;
+	char	*buf;
+	int		bpp;
+	int		size;
+	int		endian;
 }	t_mlx;
 
 typedef struct	s_cub
