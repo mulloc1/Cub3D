@@ -6,7 +6,7 @@
 /*   By: jonkim <jonkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:42:31 by jaebae            #+#    #+#             */
-/*   Updated: 2022/08/01 15:48:05 by jonkim           ###   ########.fr       */
+/*   Updated: 2022/08/04 12:43:30 by jonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	ft_player_direction(t_cub *cub, char dir, t_vector v)
 {
 	if (cub->player.pos.x > 0 && cub->player.pos.y > 0)
 		ft_error(1, "invalid map multi player");
+	cub->map.map[(int)v.y][(int)v.x] = '0';
 	cub->player.pos.x = v.x + 0.5;
 	cub->player.pos.y = v.y + 0.5;
 	if (dir == 'N')
