@@ -16,8 +16,8 @@ int main(int ac, char *av[])
 	}
 	ft_mlx_init(&cub);
 	raycasting(&cub);
+	mlx_hook(cub.mlx.win, 3, 0, key_hook, &cub);
 	mlx_loop(cub.mlx.mlx);
-	
 	// if (play() == ERROR)
 	// {
 	// 	// 에러 출력 

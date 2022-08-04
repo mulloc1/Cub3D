@@ -12,8 +12,8 @@
 # include "mlx.h"
 
 # define ERROR -1
-# define ROTATE_R -0.785398
-# define ROTATE_L 0.785398
+# define ROTATE_R -0.523599
+# define ROTATE_L 0.523599
 
 int		ft_mlx_init(t_cub *cub);
 int		raycasting(t_cub *cub);
@@ -36,5 +36,9 @@ void	ft_player_direction(t_cub *cub, char dir, t_vector v);
 void	rebuilding_map(t_cub *cub);
 void	creating_map(t_cub *cub, char *buf);
 int		ft_parsing(t_cub *cub, char *file);
+int		key_hook(int key_code, t_cub *cub);
+int		rotate_vector(t_player *player, int right);
+
+
 
 #endif

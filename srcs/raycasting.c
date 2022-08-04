@@ -1,35 +1,9 @@
 #include "cub3d.h"
 
-int rotate_vector(t_player *player, int right)
-{
-	// right = 1 -> turn right
-	// right = 0 -> turn left
-	double	old_dirX;
-	double	old_camX;
-
-	old_dirX = player->dir.x;
-	old_camX = player->plane.x;
-	if (right == 1)
-	{
-		player->dir.x = old_dirX * cos(ROTATE_R) -  player->dir.y * sin(ROTATE_R);
-		player->dir.y = old_dirX * sin(ROTATE_R) + player->dir.y * cos(ROTATE_R);
-		player->plane.x = old_camX * cos(ROTATE_R) - player->plane.y * sin(ROTATE_R);
-		player->plane.y = old_camX * sin(ROTATE_R) + player->plane.y * cos(ROTATE_R);
-	}
-	else
-	{
-		player->dir.x = old_dirX * cos(ROTATE_L) -  player->dir.y * sin(ROTATE_L);
-		player->dir.y = old_dirX * sin(ROTATE_L) + player->dir.y * cos(ROTATE_L);
-		player->plane.x = old_camX * cos(ROTATE_L) - player->plane.y * sin(ROTATE_L);
-		player->plane.y = old_camX * sin(ROTATE_L) + player->plane.y * cos(ROTATE_L);
-	}
-	return (0);
-}
-
 void	verLine(int x, int drawstart, int drawend, int color, t_cub *cub)
 {
 	unsigned int	*temp;
-	int i;
+	int				i;
 	
 	i = -1;
 	while (++i < cub->map.win_height)
@@ -46,12 +20,6 @@ void	verLine(int x, int drawstart, int drawend, int color, t_cub *cub)
 		temp = (unsigned int*)cub->mlx.buf + (i * cub->map.win_width) + x;
 		*temp = color;
 	}
-	// printf("%d, %d\n",drawstart, drawend);
-	// for (int i = drawstart; i < drawend; i++)
-	// {
-	// 	temp = (unsigned int*)cub->mlx.buf + (i * cub->map.win_width) + x;
-	// 	*temp = color;
-	// }
 }
 
 int	ray_init(t_player *player, double cam_x, t_ray *ray)
