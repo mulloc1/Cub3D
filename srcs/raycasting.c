@@ -1,14 +1,15 @@
 #include "cub3d.h"
 
-void	verLine(int x, int drawstart, int drawend, int lineHeight, t_cub *cub, double obj_x)
+void	verLine(int x, int drawstart, int drawend, int lineHeight, t_cub *cub, double obj_x, t_texture *tex)
 {
 	unsigned int	*temp;
 	unsigned int	*tex_rgb;
 	int				i;
+	double obj_y = 0;
 
 	i = -1;
 	x = cub->map.win_width - x - 1;
-	int img_x = (int)((obj_x - (int)obj_x) * cub->mlx.no.width);
+	int img_x = (int)((obj_x - (int)obj_x) * tex->width);
 	while (++i < cub->map.win_height)
 	{
 		temp = (unsigned int*)cub->mlx.buf + (i * cub->map.win_width) + x;
@@ -17,17 +18,35 @@ void	verLine(int x, int drawstart, int drawend, int lineHeight, t_cub *cub, doub
 		else
 			*temp = cub->map.floor;
 	}
-	double obj_y = 0;
     if (drawstart == 0)
-        obj_y = lineHeight / 2 - cub->map.height / 2;
+        obj_y = lineHeight / 2 - cub->map.win_height / 2;
+		//draw_start == 0일 땐 [obj_y = wall_height / 2 - sceenHeight / 2]
 	i = drawstart - 1;
 	while (++i < drawend)
 	{
-		int		img_y = (int)(cub->mlx.no.height * (obj_y / lineHeight));
+		int		img_y = (int)(tex->height * (obj_y / lineHeight));
 		temp = (unsigned int*)cub->mlx.buf + (i * cub->map.win_width) + x;
-		tex_rgb = (unsigned int*)cub->mlx.no.img_buf + img_x + img_y * cub->mlx.no.size / (cub->mlx.no.bpp / 8);
+		tex_rgb = (unsigned int*)tex->img_buf + img_x + img_y * tex->size / (tex->bpp / 8);
 		*temp = *tex_rgb;
         obj_y++;
+	}
+}
+
+t_texture *find_dir(t_ray *ray, t_cub *cub)
+{
+	if (ray->side)
+	{
+		if (ray->vec.y < 0)
+			return (&cub->mlx.so);
+		else
+			return (&cub->mlx.no);
+	}
+	else
+	{
+		if (ray->vec.x < 0)
+			return (&cub->mlx.ea);
+		else
+			return (&cub->mlx.we);
 	}
 }
 
@@ -116,7 +135,8 @@ int raycasting(t_cub *cub)
 	// else
 	// 	obj_x = ray.sideDist.y + ray.deltaDist.y;
 	double obj_x = (ray.side == 0) ? cub->player.pos.y + ray.perpWallDist * ray.vec.y : cub->player.pos.x + ray.perpWallDist * ray.vec.x; 
-	verLine(i, drawStart, drawEnd, lineHeight, cub, obj_x);
+	t_texture *tex = find_dir(&ray, cub);
+	verLine(i, drawStart, drawEnd, lineHeight, cub, obj_x, tex);
 	}
 	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, cub->mlx.img, 0, 0);
 	return(0);
