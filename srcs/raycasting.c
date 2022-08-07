@@ -1,12 +1,11 @@
 #include "cub3d.h"
 
-void	verLine(int x, int drawstart, int drawend, int color, t_cub *cub, double obj_x)
+void	verLine(int x, int drawstart, int drawend, int lineHeight, t_cub *cub, double obj_x)
 {
 	unsigned int	*temp;
 	unsigned int	*tex_rgb;
 	int				i;
 
-	color++;
 	i = -1;
 	x = cub->map.win_width - x - 1;
 	int img_x = (int)((obj_x - (int)obj_x) * cub->mlx.no.width);
@@ -18,14 +17,17 @@ void	verLine(int x, int drawstart, int drawend, int color, t_cub *cub, double ob
 		else
 			*temp = cub->map.floor;
 	}
+	double obj_y = 0;
+    if (drawstart == 0)
+        obj_y = lineHeight / 2 - cub->map.height / 2;
 	i = drawstart - 1;
 	while (++i < drawend)
 	{
-		double obj_y = (double)(i - drawstart)/(double)(drawend - drawstart);
-		int		img_y = (int)(obj_y * cub->mlx.no.height);
+		int		img_y = (int)(cub->mlx.no.height * (obj_y / lineHeight));
 		temp = (unsigned int*)cub->mlx.buf + (i * cub->map.win_width) + x;
-		tex_rgb = (unsigned int*)cub->mlx.no.img_buf + img_x + img_y * cub->mlx.no.width;
+		tex_rgb = (unsigned int*)cub->mlx.no.img_buf + img_x + img_y * cub->mlx.no.size / (cub->mlx.no.bpp / 8);
 		*temp = *tex_rgb;
+        obj_y++;
 	}
 }
 
@@ -114,26 +116,8 @@ int raycasting(t_cub *cub)
 	// else
 	// 	obj_x = ray.sideDist.y + ray.deltaDist.y;
 	double obj_x = (ray.side == 0) ? cub->player.pos.y + ray.perpWallDist * ray.vec.y : cub->player.pos.x + ray.perpWallDist * ray.vec.x; 
-	  int color;
-	  color = cub->map.wall_color;
-	  if (ray.side == 1)
-	  	color = color / 2;
-	verLine(i, drawStart, drawEnd, color, cub, obj_x);
+	verLine(i, drawStart, drawEnd, lineHeight, cub, obj_x);
 	}
 	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, cub->mlx.img, 0, 0);
-
-	unsigned int *temp;
-	unsigned int *tex_rgb;
-	for (int i = 0; i < 160; i++)
-	{
-		for (int j = 0; j < 160; j++)
-		{
-			temp = (unsigned int*)cub->mlx.buf + (i * cub->map.win_width) + j;
-			tex_rgb = (unsigned int*)cub->mlx.no.img_buf + (j / 10) + (i /10) * cub->mlx.no.width;
-			*temp = *tex_rgb;
-		}
-	}
-	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, cub->mlx.img, 0, 0);
-
 	return(0);
 }
