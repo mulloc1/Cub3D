@@ -6,7 +6,7 @@
 /*   By: jonkim <jonkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:54:28 by jaebae            #+#    #+#             */
-/*   Updated: 2022/08/07 13:05:17 by jonkim           ###   ########.fr       */
+/*   Updated: 2022/08/07 16:10:27 by jonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,19 @@ typedef struct s_texture
 	int		width;
 	int		height;	
 }	t_texture;
+
+typedef struct s_draw
+{
+	t_texture	*texture;
+	int	draw_height;
+	int	start;
+	int	end;
+	double	pos_x;
+	double	pos_y;
+	int		tex_x;
+	int		tex_y;
+	int		x;
+}	t_draw;
 
 typedef struct s_mlx
 {

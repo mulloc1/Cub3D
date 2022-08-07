@@ -24,8 +24,13 @@
 # define KEY_D 2
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
+# define VEC_MAX 999999999
 
 int		ft_mlx_init(t_cub *cub);
+void	ray_init(t_player *player, double cam_x, t_ray *ray);
+void	draw_init(t_draw *draw, t_cub *cub, t_ray *ray, int i);
+
+
 int		raycasting(t_cub *cub);
 
 

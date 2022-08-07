@@ -22,6 +22,7 @@ SRCS =	$(DIR)init.c \
 		$(DIR)parsing_is_funcs.c \
 		$(DIR)parsing_put_funcs.c \
 		$(DIR)parsing_utils.c \
+		$(DIR)raycasting_init.c \
 		$(DIR)raycasting.c \
 		$(DIR)key_hook.c \
 
