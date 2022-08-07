@@ -1,82 +1,73 @@
 #include "cub3d.h"
 
-int rotate_vector(t_player *player, int right)
+static int	rot_vector(t_player *player, int direction)
 {
-	// right = 1 -> turn right
-	// right = 0 -> turn left
-	double	old_dirX;
-	double	old_camX;
+	double	old_dirx;
+	double	old_camx;
 
-	old_dirX = player->dir.x;
-	old_camX = player->plane.x;
-	if (right == 1)
+	old_dirx = player->dir.x;
+	old_camx = player->plane.x;
+	if (direction == RIGHT)
 	{
-		player->dir.x = old_dirX * cos(ROTATE_R) -  player->dir.y * sin(ROTATE_R);
-		player->dir.y = old_dirX * sin(ROTATE_R) + player->dir.y * cos(ROTATE_R);
-		player->plane.x = old_camX * cos(ROTATE_R) - player->plane.y * sin(ROTATE_R);
-		player->plane.y = old_camX * sin(ROTATE_R) + player->plane.y * cos(ROTATE_R);
+		player->dir.x = old_dirx * cos(ROT_R) - player->dir.y * sin(ROT_R);
+		player->dir.y = old_dirx * sin(ROT_R) + player->dir.y * cos(ROT_R);
+		player->plane.x = old_camx * cos(ROT_R) - player->plane.y * sin(ROT_R);
+		player->plane.y = old_camx * sin(ROT_R) + player->plane.y * cos(ROT_R);
 	}
 	else
 	{
-		player->dir.x = old_dirX * cos(ROTATE_L) -  player->dir.y * sin(ROTATE_L);
-		player->dir.y = old_dirX * sin(ROTATE_L) + player->dir.y * cos(ROTATE_L);
-		player->plane.x = old_camX * cos(ROTATE_L) - player->plane.y * sin(ROTATE_L);
-		player->plane.y = old_camX * sin(ROTATE_L) + player->plane.y * cos(ROTATE_L);
+		player->dir.x = old_dirx * cos(ROT_L) - player->dir.y * sin(ROT_L);
+		player->dir.y = old_dirx * sin(ROT_L) + player->dir.y * cos(ROT_L);
+		player->plane.x = old_camx * cos(ROT_L) - player->plane.y * sin(ROT_L);
+		player->plane.y = old_camx * sin(ROT_L) + player->plane.y * cos(ROT_L);
 	}
 	return (0);
 }
 
-int move_vector(t_player *player, int key_code, t_cub *cub)
+static int	move_vector(t_player *player, int key_code, t_cub *cub)
 {
-	t_vector new_pos; //ㅊㅓ음 서있던 위치
-	t_vector mov_dir; // 움직일 방향 
-	 
-	if (key_code == 13)// move foward
+	t_vector	new_pos;
+
+	if (key_code == KEY_W)
 	{
-		mov_dir = player->dir;
-		new_pos.x = player->pos.x + (player->dir.x * 0.222);
-		new_pos.y = player->pos.y + (player->dir.y * 0.222);	
+		new_pos.x = player->pos.x + (player->dir.x * MOVE_SPEED);
+		new_pos.y = player->pos.y + (player->dir.y * MOVE_SPEED);
 	}
-	else if (key_code == 0) // move right
+	else if (key_code == KEY_A)
 	{
-		mov_dir = player->dir;
-		new_pos.x = player->pos.x + (player->dir.y * 0.222);
-		new_pos.y = player->pos.y + ((player->dir.x * -1) * 0.222);	
+		new_pos.x = player->pos.x + (player->dir.y * MOVE_SPEED);
+		new_pos.y = player->pos.y + ((player->dir.x * -1) * MOVE_SPEED);
 	}
-	else if (key_code == 1)// move backward
+	else if (key_code == KEY_S)
 	{
-		mov_dir = player->dir;
-		new_pos.x = player->pos.x + ((player->dir.x * -1) * 0.222);
-		new_pos.y = player->pos.y + ((player->dir.y * -1) * 0.222);	
+		new_pos.x = player->pos.x + ((player->dir.x * -1) * MOVE_SPEED);
+		new_pos.y = player->pos.y + ((player->dir.y * -1) * MOVE_SPEED);
 	}
-	else if (key_code == 2) // move left
+	else if (key_code == KEY_D)
 	{
-		mov_dir = player->dir;
-		new_pos.x = player->pos.x + ((player->dir.y * -1) * 0.222);
-		new_pos.y = player->pos.y + (player->dir.x * 0.222);	
+		new_pos.x = player->pos.x + ((player->dir.y * -1) * MOVE_SPEED);
+		new_pos.y = player->pos.y + (player->dir.x * MOVE_SPEED);
 	}
 	if (cub->map.map[(int)new_pos.y][(int)new_pos.x] == '0')
 		player->pos = new_pos;
 	return (0);
 }
 
-
-
-int key_hook(int key_code, t_cub *cub)
+int	key_hook(int key_code, t_cub *cub)
 {
-	if (key_code == 53) // esc
+	if (key_code == KEY_ESC)
 		exit(0);
-	else if (key_code == 123) // left
-		rotate_vector(&cub->player, 0);
-	else if (key_code == 124) // right
-		rotate_vector(&cub->player, 1);
-	else if (key_code == 13) // w
+	else if (key_code == KEY_LEFT)
+		rot_vector(&cub->player, LEFT);
+	else if (key_code == KEY_RIGHT)
+		rot_vector(&cub->player, RIGHT);
+	else if (key_code == KEY_W)
 		move_vector(&cub->player, key_code, cub);
-	else if (key_code == 0) // a
+	else if (key_code == KEY_A)
 		move_vector(&cub->player, key_code, cub);
-	else if (key_code == 1) // s
+	else if (key_code == KEY_S)
 		move_vector(&cub->player, key_code, cub);
-	else if (key_code == 2) // d
+	else if (key_code == KEY_D)
 		move_vector(&cub->player, key_code, cub);
 	raycasting(cub);
 	return (0);

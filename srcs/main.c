@@ -18,6 +18,7 @@ int main(int ac, char *av[])
 	raycasting(&cub);
 	mlx_hook(cub.mlx.win, 3, 0, key_hook, &cub);
 	mlx_loop(cub.mlx.mlx);
+	// esc 눌렀을때 종료 하기
 	// if (play() == ERROR)
 	// {
 	// 	// 에러 출력 

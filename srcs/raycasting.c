@@ -121,19 +121,11 @@ int raycasting(t_cub *cub)
 			ray.perpWallDist = ray.sideDist.x - ray.deltaDist.x;
 		else
 			ray.perpWallDist = ray.sideDist.y - ray.deltaDist.y;
-		int lineHeight = (int)(cub->map.win_height / ray.perpWallDist);
-
-      //calculate lowest and highest pixel to fill in current stripe
-      int drawStart = -lineHeight / 2 + cub->map.win_height / 2;
-      if(drawStart < 0) drawStart = 0;
-      int drawEnd = lineHeight / 2 + cub->map.win_height / 2;
-      if(drawEnd >= cub->map.win_height) drawEnd = cub->map.win_height - 1;
-	  // side == 0 -> x면 충돌 side == 1 ->y면 충돌
-	//   double obj_x;
-	//   if (ray.side == 0)
-	// 	obj_x = ray.sideDist.x + ray.deltaDist.x;
-	// else
-	// 	obj_x = ray.sideDist.y + ray.deltaDist.y;
+	int lineHeight = (int)(cub->map.win_height / ray.perpWallDist);
+	int drawStart = -lineHeight / 2 + cub->map.win_height / 2;
+	if(drawStart < 0) drawStart = 0;
+		int drawEnd = lineHeight / 2 + cub->map.win_height / 2;
+	if(drawEnd >= cub->map.win_height) drawEnd = cub->map.win_height - 1;
 	double obj_x = (ray.side == 0) ? cub->player.pos.y + ray.perpWallDist * ray.vec.y : cub->player.pos.x + ray.perpWallDist * ray.vec.x; 
 	t_texture *tex = find_dir(&ray, cub);
 	verLine(i, drawStart, drawEnd, lineHeight, cub, obj_x, tex);

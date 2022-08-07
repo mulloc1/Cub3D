@@ -12,8 +12,18 @@
 # include "mlx.h"
 
 # define ERROR -1
-# define ROTATE_R 0.523599
-# define ROTATE_L -0.523599
+# define ROT_R 0.523599
+# define ROT_L -0.523599
+# define MOVE_SPEED 0.222
+# define RIGHT 1
+# define LEFT 0
+# define KEY_ESC 53
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
 
 int		ft_mlx_init(t_cub *cub);
 int		raycasting(t_cub *cub);
