@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-WE ./path_to_the_west_texture
-SO ./path_to_the_south_texture
-EA ./path_to_the_east_texture
+NO textures/path_to_the_north_texture
+WE textures/path_to_the_west_texture
+SO textures/path_to_the_south_texture
+EA textures/path_to_the_east_texture
 
 F 0,0,0
 C 255,255,255

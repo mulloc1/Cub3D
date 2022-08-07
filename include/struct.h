@@ -6,7 +6,7 @@
 /*   By: jonkim <jonkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:54:28 by jaebae            #+#    #+#             */
-/*   Updated: 2022/08/01 15:26:47 by jonkim           ###   ########.fr       */
+/*   Updated: 2022/08/07 11:18:56 by jonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,20 @@ typedef struct s_player
 	t_vector	plane;
 }	t_player;
 
+
+typedef struct s_texture
+{
+	void	*img_texture;
+	int		width;
+	int		height;	
+}	t_texture;
+
 typedef struct s_mlx
 {
+	t_texture no;
+	t_texture so;
+	t_texture ea;
+	t_texture we;
 	void	*mlx;
 	void	*win;
 	void	*img;

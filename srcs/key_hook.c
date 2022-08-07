@@ -37,11 +37,11 @@ int move_vector(t_player *player, int key_code, t_cub *cub)
 		new_pos.x = player->pos.x + (player->dir.x * 0.222);
 		new_pos.y = player->pos.y + (player->dir.y * 0.222);	
 	}
-	else if (key_code == 0) // move left
+	else if (key_code == 0) // move right
 	{
 		mov_dir = player->dir;
-		new_pos.x = player->pos.x + ((player->dir.y * -1) * 0.222);
-		new_pos.y = player->pos.y + (player->dir.x * 0.222);	
+		new_pos.x = player->pos.x + (player->dir.y * 0.222);
+		new_pos.y = player->pos.y + ((player->dir.x * -1) * 0.222);	
 	}
 	else if (key_code == 1)// move backward
 	{
@@ -49,11 +49,11 @@ int move_vector(t_player *player, int key_code, t_cub *cub)
 		new_pos.x = player->pos.x + ((player->dir.x * -1) * 0.222);
 		new_pos.y = player->pos.y + ((player->dir.y * -1) * 0.222);	
 	}
-	else if (key_code == 2) // move right
+	else if (key_code == 2) // move left
 	{
 		mov_dir = player->dir;
-		new_pos.x = player->pos.x + (player->dir.y * 0.222);
-		new_pos.y = player->pos.y + ((player->dir.x * -1) * 0.222);	
+		new_pos.x = player->pos.x + ((player->dir.y * -1) * 0.222);
+		new_pos.y = player->pos.y + (player->dir.x * 0.222);	
 	}
 	if (cub->map.map[(int)new_pos.y][(int)new_pos.x] == '0')
 		player->pos = new_pos;

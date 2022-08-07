@@ -6,6 +6,7 @@ void	verLine(int x, int drawstart, int drawend, int color, t_cub *cub)
 	int				i;
 	
 	i = -1;
+	x = cub->map.win_width - x - 1;
 	while (++i < cub->map.win_height)
 	{
 		temp = (unsigned int*)cub->mlx.buf + (i * cub->map.win_width) + x;

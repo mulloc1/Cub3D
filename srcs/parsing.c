@@ -6,7 +6,7 @@
 /*   By: jonkim <jonkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:42:31 by jaebae            #+#    #+#             */
-/*   Updated: 2022/08/04 12:43:30 by jonkim           ###   ########.fr       */
+/*   Updated: 2022/08/04 14:04:46 by jonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,20 @@ void	ft_player_direction(t_cub *cub, char dir, t_vector v)
 	cub->map.map[(int)v.y][(int)v.x] = '0';
 	cub->player.pos.x = v.x + 0.5;
 	cub->player.pos.y = v.y + 0.5;
-	if (dir == 'N')
+	if (dir == 'S')
 	{
 		cub->player.dir = (t_vector){0, 1};
 		cub->player.plane = (t_vector){-0.66, 0};
 	}
-	else if (dir == 'S')
+	else if (dir == 'N')
 	{
 		cub->player.dir = (t_vector){0, -1};
-		cub->player.plane = (t_vector){0.66, 0};
+		cub->player.plane = (t_vector){-0.66, 0};
 	}
 	else if (dir == 'E')
 	{
 		cub->player.dir = (t_vector){1, 0};
-		cub->player.plane = (t_vector){0, -0.66};
+		cub->player.plane = (t_vector){0, 0.66};
 	}
 	else if (dir == 'W')
 	{

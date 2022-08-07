@@ -12,8 +12,8 @@
 # include "mlx.h"
 
 # define ERROR -1
-# define ROTATE_R -0.523599
-# define ROTATE_L 0.523599
+# define ROTATE_R 0.523599
+# define ROTATE_L -0.523599
 
 int		ft_mlx_init(t_cub *cub);
 int		raycasting(t_cub *cub);
