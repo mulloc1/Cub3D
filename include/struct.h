@@ -6,7 +6,7 @@
 /*   By: jonkim <jonkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:54:28 by jaebae            #+#    #+#             */
-/*   Updated: 2022/08/07 11:18:56 by jonkim           ###   ########.fr       */
+/*   Updated: 2022/08/07 13:05:17 by jonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ typedef struct s_player
 typedef struct s_texture
 {
 	void	*img_texture;
+	char		*img_buf;
+	int		bpp;
+	int		size;
+	int		endian;
 	int		width;
 	int		height;	
 }	t_texture;
@@ -67,6 +71,7 @@ typedef struct s_texture
 typedef struct s_mlx
 {
 	t_texture no;
+	int *no_texture;
 	t_texture so;
 	t_texture ea;
 	t_texture we;
