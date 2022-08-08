@@ -32,17 +32,17 @@ void	ft_put_rgb(t_cub *cub, char *type, char *value)
 
 	rgbs = ft_split(value, ',');
 	ft_error(!rgbs, "ft_put_rgb() rgbs ft_split() failed\n");
-	ft_error(!ft_is_valid_rgb(rgbs[0]), "invalid rgb value");
+	ft_error(!ft_is_valid_rgb(rgbs[0]), "invalid rgb value\n");
 	temp = ft_atoi(rgbs[0]);
-	ft_error(temp < 0 || temp > 255, "invalid rgb value");
+	ft_error(temp < 0 || temp > 255, "invalid rgb value\n");
 	rgb = temp << 16;
-	ft_error(!ft_is_valid_rgb(rgbs[1]), "invalid rgb value");
+	ft_error(!ft_is_valid_rgb(rgbs[1]), "invalid rgb value\n");
 	temp = ft_atoi(rgbs[1]);
-	ft_error(temp < 0 || temp > 255, "invalid rgb value");
+	ft_error(temp < 0 || temp > 255, "invalid rgb value\n");
 	rgb += temp << 8;
-	ft_error(!ft_is_valid_rgb(rgbs[2]), "invalid rgb value");
+	ft_error(!ft_is_valid_rgb(rgbs[2]), "invalid rgb value\n");
 	temp = ft_atoi(rgbs[2]);
-	ft_error(temp < 0 || temp > 255, "invalid rgb value");
+	ft_error(temp < 0 || temp > 255, "invalid rgb value\n");
 	rgb += temp;
 	if (ft_strncmp(type, "F", 2))
 		cub->map.floor = rgb;

@@ -29,13 +29,15 @@ int	ft_is_valid_c(char c)
 
 int	ft_is_not_around_space(int x, int y, char **map, t_cub *cub)
 {
-	if (y + 1 < cub->map.height && map[y + 1][x] == ' ')
+	if (y == cub->map.height - 1 || x == cub->map.width - 1 || y == 0 || x == 0)
 		return (0);
-	if (y - 1 >= 0 && map[y - 1][x] == ' ')
+	if (map[y + 1][x] == ' ' || map[y + 1][x] == '\0')
 		return (0);
-	if (x + 1 < cub->map.width && map[y][x + 1] == ' ')
+	if (map[y - 1][x] == ' ')
 		return (0);
-	if (x - 1 >= 0 && map[y][x - 1] == ' ')
+	if ((map[y][x + 1] == ' ' || map[y][x + 1] == '\0'))
+		return (0);
+	if (map[y][x - 1] == ' ')
 		return (0);
 	return (1);
 }
@@ -64,10 +66,11 @@ void	map_valid_checking(t_cub *cub)
 		x = -1;
 		while (map[y][++x])
 		{
-			ft_error(!ft_is_valid_c(map[y][x]), "invalid map");
+			ft_error(!ft_is_valid_c(map[y][x]), "invalid map\n");
 			if (map[y][x] == '0' || ft_isdir(map[y][x]))
 			{
-				ft_error(!ft_is_not_around_space(x, y, map, cub), "invalid map");
+				ft_error(!ft_is_not_around_space(x, y, map, cub), \
+					"invalid map\n");
 				if (ft_isdir(map[y][x]))
 					ft_player_direction(cub, map[y][x], (t_vector){x, y});
 			}

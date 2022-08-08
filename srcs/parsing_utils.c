@@ -16,7 +16,7 @@ void	ft_error(int cmp, char *message)
 {
 	if (cmp)
 	{
-		perror(message);
+		write(1, message, ft_strlen(message));
 		exit(1);
 	}		
 }

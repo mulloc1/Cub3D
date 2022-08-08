@@ -39,7 +39,7 @@ void	rebuilding_map(t_cub *cub)
 	while (++i < cub->map.height)
 	{
 		temp = malloc(cub->map.width * sizeof(char));
-		ft_error(!temp, "rebuilding_map() temp malloc() failed");
+		ft_error(!temp, "rebuilding_map() temp malloc() failed\n");
 		ft_strlcpy(temp, cub->map.map[i], cub->map.width + 1);
 		free(cub->map.map[i]);
 		cub->map.map[i] = temp;
@@ -49,7 +49,7 @@ void	rebuilding_map(t_cub *cub)
 void	ft_player_direction(t_cub *cub, char dir, t_vector v)
 {
 	if (cub->player.pos.x > 0 && cub->player.pos.y > 0)
-		ft_error(1, "invalid map multi player");
+		ft_error(1, "invalid map multi player\n");
 	cub->map.map[(int)v.y][(int)v.x] = '0';
 	cub->player.pos.x = v.x + 0.5;
 	cub->player.pos.y = v.y + 0.5;
@@ -80,9 +80,9 @@ int	ft_parsing(t_cub *cub, char *file)
 	char	*buf;
 	int		fd;
 
-	ft_error(!ft_valid_filename(file), "invalid file extension");
+	ft_error(!ft_valid_filename(file), "invalid file extension\n");
 	fd = open(file, O_RDONLY);
-	ft_error(fd == -1, "parser() fd open() failed");
+	ft_error(fd == -1, "parser() fd open() failed\n");
 	while (1)
 	{
 		buf = get_next_line(fd);
@@ -98,6 +98,8 @@ int	ft_parsing(t_cub *cub, char *file)
 	cub->map.win_width = 640;
 	cub->map.wall_color = 0x00FF00;
 	map_valid_checking(cub);
+	ft_error(cub->player.dir.x == 0 && cub->player.dir.y == 0, \
+	"invalid map dose not exist player\n");
 	rebuilding_map(cub);
 	return (1);
 }
