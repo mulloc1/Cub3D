@@ -55,8 +55,8 @@ void	ft_player_direction(t_cub *cub, char dir, t_vector v)
 	cub->player.pos.y = v.y + 0.5;
 	if (dir == 'S')
 	{
-		cub->player.dir = (t_vector){0, 1};
-		cub->player.plane = (t_vector){-0.66, 0};
+		cub->player.dir = (t_vector){1, 0};
+		cub->player.plane = (t_vector){0, -0.66};
 	}
 	else if (dir == 'N')
 	{
@@ -65,8 +65,8 @@ void	ft_player_direction(t_cub *cub, char dir, t_vector v)
 	}
 	else if (dir == 'E')
 	{
-		cub->player.dir = (t_vector){1, 0};
-		cub->player.plane = (t_vector){0, 0.66};
+		cub->player.dir = (t_vector){0, 1};
+		cub->player.plane = (t_vector){0.66, 0};
 	}
 	else if (dir == 'W')
 	{
