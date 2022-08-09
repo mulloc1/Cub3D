@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting_init.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jonkim <jonkim@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/09 12:10:12 by jonkim            #+#    #+#             */
+/*   Updated: 2022/08/09 12:10:13 by jonkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static t_texture	*find_dir(t_ray *ray, t_cub *cub)
@@ -22,23 +34,23 @@ static void	ray_init2(t_ray *ray, t_player *player)
 {
 	if (ray->vec.x < 0)
 	{
-		ray->stepX = -1;
-		ray->sideDist.x = (player->pos.x - ray->mapX) * ray->deltaDist.x;
+		ray->stepx = -1;
+		ray->sidedist.x = (player->pos.x - ray->mapx) * ray->deltadist.x;
 	}
 	else
 	{
-		ray->stepX = 1;
-		ray->sideDist.x = (ray->mapX + 1.0 - player->pos.x) * ray->deltaDist.x;
+		ray->stepx = 1;
+		ray->sidedist.x = (ray->mapx + 1.0 - player->pos.x) * ray->deltadist.x;
 	}
 	if (ray->vec.y < 0)
 	{
-		ray->stepY = -1;
-		ray->sideDist.y = (player->pos.y - ray->mapY) * ray->deltaDist.y;
+		ray->stepy = -1;
+		ray->sidedist.y = (player->pos.y - ray->mapy) * ray->deltadist.y;
 	}
 	else
 	{
-		ray->stepY = 1;
-		ray->sideDist.y = (ray->mapY + 1.0 - player->pos.y) * ray->deltaDist.y;
+		ray->stepy = 1;
+		ray->sidedist.y = (ray->mapy + 1.0 - player->pos.y) * ray->deltadist.y;
 	}
 }
 
@@ -47,23 +59,23 @@ void	ray_init(t_player *player, double cam_x, t_ray *ray)
 	ft_memset(ray, 0, sizeof(t_ray));
 	ray->vec.x = player->dir.x + player->plane.x * cam_x;
 	ray->vec.y = player->dir.y + player->plane.y * cam_x;
-	ray->mapX = (int)player->pos.x;
-	ray->mapY = (int)player->pos.y;
+	ray->mapx = (int)player->pos.x;
+	ray->mapy = (int)player->pos.y;
 	if (ray->vec.x == 0)
-		ray->deltaDist.x = VEC_MAX;
+		ray->deltadist.x = VEC_MAX;
 	else
-		ray->deltaDist.x = fabs(1 / ray->vec.x);
+		ray->deltadist.x = fabs(1 / ray->vec.x);
 	if (ray->vec.y == 0)
-		ray->deltaDist.y = VEC_MAX;
+		ray->deltadist.y = VEC_MAX;
 	else
-		ray->deltaDist.y = fabs(1 / ray->vec.y);
+		ray->deltadist.y = fabs(1 / ray->vec.y);
 	ray_init2(ray, player);
 }
 
 void	draw_init(t_draw *draw, t_cub *cub, t_ray *ray, int i)
 {
 	ft_memset(draw, 0, sizeof(t_draw));
-	draw->draw_height = (int)(cub->map.win_height / ray->perpWallDist);
+	draw->draw_height = (int)(cub->map.win_height / ray->perpwalldist);
 	draw->start = -draw->draw_height / 2 + cub->map.win_height / 2;
 	if (draw->start < 0)
 		draw->start = 0;
@@ -71,9 +83,9 @@ void	draw_init(t_draw *draw, t_cub *cub, t_ray *ray, int i)
 	if (draw->end >= cub->map.win_height)
 		draw->end = cub->map.win_height - 1;
 	if (ray->side == 0)
-		draw->pos_x = cub->player.pos.y + ray->perpWallDist * ray->vec.y;
+		draw->pos_x = cub->player.pos.y + ray->perpwalldist * ray->vec.y;
 	else
-		draw->pos_x = cub->player.pos.x + ray->perpWallDist * ray->vec.x;
+		draw->pos_x = cub->player.pos.x + ray->perpwalldist * ray->vec.x;
 	draw->texture = find_dir(ray, cub);
 	draw->x = i;
 }

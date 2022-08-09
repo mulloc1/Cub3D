@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_hook.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jonkim <jonkim@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/09 12:09:57 by jonkim            #+#    #+#             */
+/*   Updated: 2022/08/09 12:09:59 by jonkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static int	rot_vector(t_player *player, int direction)
+static void	rot_vector(t_player *player, int direction)
 {
 	double	old_dirx;
 	double	old_camx;
@@ -21,6 +33,12 @@ static int	rot_vector(t_player *player, int direction)
 		player->plane.x = old_camx * cos(ROT_L) - player->plane.y * sin(ROT_L);
 		player->plane.y = old_camx * sin(ROT_L) + player->plane.y * cos(ROT_L);
 	}
+}
+
+int	can_go(t_vector new_pos, t_cub *cub)
+{
+	if (cub->map.map[(int)new_pos.y][(int)new_pos.x] == '0')
+		return (1);
 	return (0);
 }
 

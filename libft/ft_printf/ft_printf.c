@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baejaemin <baejaemin@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jonkim <jonkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:10:25 by jaebae            #+#    #+#             */
-/*   Updated: 2022/03/02 11:20:45 by baejaemin        ###   ########.fr       */
+/*   Updated: 2022/08/09 12:11:42 by jonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	ft_printf(const char *format, ...)
 {
-	static	void	(*funcs[10])() = {p, c, d, s, x_up, u, NULL, d, x_lo, per};
+	static void		(*funcs[10])() = {p, c, d, s, x_up, u, NULL, d, x_lo, per};
 	const char		*format_c = "pcdsXuix%";
 	va_list			op;
 	int				cnt;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jonkim <jonkim@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/09 12:10:15 by jonkim            #+#    #+#             */
+/*   Updated: 2022/08/09 12:10:16 by jonkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	draw_ceil_floor(t_cub *cub, t_draw *draw)
@@ -47,25 +59,25 @@ static void	ray_hit(t_ray *ray, t_cub *cub)
 {
 	while (!ray->hit)
 	{
-		if (ray->sideDist.x < ray->sideDist.y)
+		if (ray->sidedist.x < ray->sidedist.y)
 		{
-			ray->sideDist.x += ray->deltaDist.x;
-			ray->mapX += ray->stepX;
+			ray->sidedist.x += ray->deltadist.x;
+			ray->mapx += ray->stepx;
 			ray->side = 0;
 		}
 		else
 		{
-			ray->sideDist.y += ray->deltaDist.y;
-			ray->mapY += ray->stepY;
+			ray->sidedist.y += ray->deltadist.y;
+			ray->mapy += ray->stepy;
 			ray->side = 1;
 		}
-		if (cub->map.map[ray->mapY][ray->mapX] > '0')
+		if (cub->map.map[ray->mapy][ray->mapx] > '0')
 			ray->hit = 1;
 	}
 	if (ray->side == 0)
-		ray->perpWallDist = ray->sideDist.x - ray->deltaDist.x;
+		ray->perpwalldist = ray->sidedist.x - ray->deltadist.x;
 	else
-		ray->perpWallDist = ray->sideDist.y - ray->deltaDist.y;
+		ray->perpwalldist = ray->sidedist.y - ray->deltadist.y;
 }
 
 int	raycasting(t_cub *cub)

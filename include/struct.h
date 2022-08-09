@@ -6,7 +6,7 @@
 /*   By: jonkim <jonkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:54:28 by jaebae            #+#    #+#             */
-/*   Updated: 2022/08/07 16:10:27 by jonkim           ###   ########.fr       */
+/*   Updated: 2022/08/09 12:06:22 by jonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ typedef struct s_vector
 typedef struct s_ray
 {
 	t_vector	vec;
-	t_vector	sideDist;
-	t_vector	deltaDist;
-	double		perpWallDist;
-	int			mapX;
-	int			mapY;
-	int			stepX;
-	int			stepY;
+	t_vector	sidedist;
+	t_vector	deltadist;
+	double		perpwalldist;
+	int			mapx;
+	int			mapy;
+	int			stepx;
+	int			stepy;
 	int			hit;
 	int			side;
 }	t_ray;
@@ -56,11 +56,10 @@ typedef struct s_player
 	t_vector	plane;
 }	t_player;
 
-
 typedef struct s_texture
 {
 	void	*img_texture;
-	char		*img_buf;
+	char	*img_buf;
 	int		bpp;
 	int		size;
 	int		endian;
@@ -71,30 +70,29 @@ typedef struct s_texture
 typedef struct s_draw
 {
 	t_texture	*texture;
-	int	draw_height;
-	int	start;
-	int	end;
-	double	pos_x;
-	double	pos_y;
-	int		tex_x;
-	int		tex_y;
-	int		x;
+	int			draw_height;
+	int			start;
+	int			end;
+	double		pos_x;
+	double		pos_y;
+	int			tex_x;
+	int			tex_y;
+	int			x;
 }	t_draw;
 
 typedef struct s_mlx
 {
-	t_texture no;
-	int *no_texture;
-	t_texture so;
-	t_texture ea;
-	t_texture we;
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*buf;
-	int		bpp;
-	int		size;
-	int		endian;
+	t_texture	no;
+	t_texture	so;
+	t_texture	ea;
+	t_texture	we;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	char		*buf;
+	int			bpp;
+	int			size;
+	int			endian;
 }	t_mlx;
 
 typedef struct s_cub
