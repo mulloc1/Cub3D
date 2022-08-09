@@ -6,7 +6,7 @@
 /*   By: jonkim <jonkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:10:06 by jonkim            #+#    #+#             */
-/*   Updated: 2022/08/09 12:10:07 by jonkim           ###   ########.fr       */
+/*   Updated: 2022/08/09 12:18:47 by jonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	main(int ac, char *av[])
 	ft_memset(&cub, 0, sizeof(t_cub));
 	if (ac != 2)
 	{
-		printf("argc error\n");
+		printf("Error\n");
 		return (1);
 	}
 	ft_parsing(&cub, av[1]);
 	if (ft_mlx_init(&cub) == ERROR)
 	{
-		printf("mlx_init error\n");
+		printf("Error\n");
 		return (1);
 	}
 	raycasting(&cub);
